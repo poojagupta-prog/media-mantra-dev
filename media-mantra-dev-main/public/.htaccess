@@ -1,0 +1,38 @@
+# Media Mantra Global — static export (Next.js out/)
+Options -Indexes +FollowSymLinks
+DirectoryIndex index.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Legacy / alternate URLs (mirrors next.config redirects — static export has no server redirects)
+  RewriteRule ^india/?$ /in/ [L,R=301]
+  RewriteRule ^singapore/?$ /sg/ [L,R=301]
+  RewriteRule ^uae/?$ /ae/ [L,R=301]
+  RewriteRule ^usa/?$ /us/ [L,R=301]
+  RewriteRule ^united-states/?$ /us/ [L,R=301]
+  RewriteRule ^australia/?$ /au/ [L,R=301]
+  RewriteRule ^about/gaming-mantra/?$ /about/mantras/ [L,R=301]
+  RewriteRule ^about/startup-mantra/?$ /about/mantras/ [L,R=301]
+
+  # HTTPS (uncomment if SSL is active)
+  # RewriteCond %{HTTPS} off
+  # RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # /page -> /page/ when folder has index.html
+  RewriteCond %{REQUEST_URI} !/$
+  RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}/index.html -f
+  RewriteRule ^(.*)$ $1/ [L,R=301]
+
+  # /page/ -> /page/index.html
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteCond %{REQUEST_FILENAME}/index.html -f
+  RewriteRule ^(.*)/$ $1/index.html [L]
+
+  # Fallback: flat .html files (legacy export)
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.+?)/?$ $1.html [L]
+</IfModule>

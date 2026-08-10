@@ -1,0 +1,367 @@
+@import "tailwindcss";
+
+/*
+ * Media Mantra Global — COLOUR + TYPOGRAPHY
+ * -----------------------------------------------------------------------
+ * Typography: exactly two families on the site —
+ *   • Headings: var(--font-heading) from next/font (Oswald as web stand-in for Special Gothic)
+ *   • Body: "Clash Display" (Fontshare) — all editorial / UI text
+ * Brand Mantra Navy #191970: reserved for logo lockup / print — UI uses neutral ink (below) to avoid “SaaS purple” screens.
+ * Mantra Gold #D2B450, graphite/cream surfaces per guidelines.
+ */
+
+:root {
+  /* Body stack — Clash Display only (+ system fallback). Loaded via Fontshare in root layout. */
+  --font-body: "Clash Display", ui-sans-serif, system-ui, sans-serif;
+  /* Legacy aliases mapped to the two-family system */
+  --font-oswald: var(--font-heading);
+  --font-space-grotesk: var(--font-body);
+  --font-syne: var(--font-heading);
+  --font-dm-sans: var(--font-body);
+  --font-editorial: var(--font-body);
+
+  /* Surfaces: brand graphite #4A4A4A is the base — avoid near-black UI chrome */
+  --mm-black: #4a4a4a;
+  --mm-pure-black: #3d3d3d;
+  --mm-ink: #434343;
+  --mm-midnight: #505050;
+
+  /* Editorial ink for UI type / rules — desaturated, not violet/indigo on screen */
+  --mm-royal: #2f3640;
+  /* True brand navy — only for rare accents if needed (prefer gold/graphite in layout) */
+  --mm-brand-navy: #191970;
+  --mm-gold: #d2b450;
+  --mm-graphite: #4a4a4a;
+  /** Footer / deep bands — two steps darker than brand graphite (#4a4a4a), not near-black */
+  --mm-graphite-deep: #353535;
+  --mm-charcoal: #4a4a4a;
+  --mm-cream: #ffffe3;
+  --mm-light: #a4a4a4;
+  --mm-white: #ffffff;
+
+  --background: var(--mm-graphite);
+  --foreground: var(--mm-cream);
+
+  --noise-opacity: 0.045;
+
+  /** Fixed header — homepage hero video starts directly below */
+  --mm-site-header: calc(5.5rem + env(safe-area-inset-top, 0px));
+  /** Homepage hero — viewport band below header */
+  --mm-hero-band: calc(100svh - var(--mm-site-header));
+}
+
+@media (min-width: 640px) {
+  :root {
+    --mm-site-header: calc(6.25rem + env(safe-area-inset-top, 0px));
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --mm-site-header: calc(6.875rem + env(safe-area-inset-top, 0px));
+    --mm-hero-band: calc(100svh - var(--mm-site-header));
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-mm-graphite: #4a4a4a;
+  --color-mm-graphite-deep: var(--mm-graphite-deep);
+  --color-mm-gold: #d2b450;
+  --color-mm-light: #a4a4a4;
+  --color-mm-cream: #ffffe3;
+  --color-mm-brand-navy: var(--mm-brand-navy);
+  --color-mm-royal: var(--mm-royal);
+  --color-mm-white: #ffffff;
+  --color-mm-black: var(--mm-black);
+  --color-mm-pure-black: var(--mm-pure-black);
+  --color-mm-ink: var(--mm-ink);
+  --color-mm-charcoal: #4a4a4a;
+  --color-mm-midnight: var(--mm-midnight);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-heading);
+  --breakpoint-3xl: 120rem;
+}
+
+html {
+  scroll-behavior: auto;
+  overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+  -webkit-tap-highlight-color: transparent;
+}
+
+img {
+  max-width: 100%;
+}
+
+video {
+  max-width: none;
+}
+
+/** Hero video — full viewport; mobile-safe height + edge-to-edge cover */
+.mm-hero-video-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  height: 100svh;
+  height: 100dvh;
+  min-height: min(100svh, 100dvh);
+  max-height: 100dvh;
+  background: var(--mm-graphite);
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+/** Cover fill — works for portrait + landscape source files */
+.mm-hero-video {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 0;
+  width: auto;
+  height: auto;
+  min-width: 100%;
+  min-height: 100%;
+  max-width: none;
+  max-height: none;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  object-position: center center;
+}
+
+@media (max-width: 767px) {
+  #home {
+    width: 100%;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .mm-hero-video-wrap {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    overflow: hidden;
+  }
+
+  /** Mobile: full width only — height follows video aspect ratio */
+  .mm-hero-video {
+    position: relative;
+    display: block;
+    left: auto;
+    top: auto;
+    width: 100%;
+    height: auto;
+    min-width: 100%;
+    min-height: unset;
+    max-width: 100%;
+    max-height: none;
+    transform: none;
+    object-fit: initial;
+    object-position: center center;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading), var(--font-body), system-ui, sans-serif;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--mm-gold) 35%, transparent);
+  color: var(--mm-cream);
+}
+
+.font-display {
+  font-family: var(--font-heading), var(--font-body), system-ui, sans-serif;
+}
+
+.font-editorial {
+  font-family: var(--font-body);
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+
+/* Hopscotch-style rhythm helpers: alternate density without boxing every section */
+.mm-band-tight {
+  padding-top: clamp(3.5rem, 8vw, 5rem);
+  padding-bottom: clamp(3.5rem, 8vw, 5rem);
+}
+.mm-band-rest {
+  padding-top: clamp(5rem, 12vw, 8.5rem);
+  padding-bottom: clamp(5rem, 12vw, 8.5rem);
+}
+.mm-band-impact {
+  padding-top: clamp(6rem, 14vw, 10rem);
+  padding-bottom: clamp(6rem, 14vw, 10rem);
+}
+
+/* PPT: white/cream sections — headlines in brand blue */
+.mm-headline-brand-blue {
+  color: var(--mm-brand-navy);
+}
+
+/* Slow globe spin (homepage locations) */
+@keyframes mm-globe-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes mm-globe-map-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.mm-globe-spin {
+  animation: mm-globe-spin 72s linear infinite;
+}
+.mm-globe-map-scroll {
+  animation: mm-globe-map-scroll 36s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .mm-globe-spin,
+  .mm-globe-map-scroll {
+    animation: none;
+  }
+}
+
+/* Film grain noise — disabled on touch/reduced-motion to avoid scroll compositing cost */
+.mm-noise {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  opacity: var(--noise-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .mm-noise {
+    display: none;
+  }
+}
+
+/* Marquee */
+@keyframes mm-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.mm-marquee-track {
+  animation: mm-marquee 48s linear infinite;
+}
+
+/** Client logos — slower drift; pause on hover (#clients) when motion OK */
+.mm-marquee-track-clients {
+  animation: mm-marquee 240s linear infinite;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  #clients:hover .mm-marquee-track-clients {
+    animation-play-state: paused;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mm-marquee-track {
+    animation: none;
+  }
+  .mm-marquee-track-clients {
+    animation: none;
+  }
+}
+
+/* Engineering grid on brand graphite (avoid pure #000) */
+.mm-hop-grid-bg {
+  background-color: var(--mm-graphite);
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Gradient mesh subtle motion */
+@keyframes mm-mesh {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-2%, 1%, 0) scale(1.02);
+  }
+}
+
+.mm-mesh {
+  animation: mm-mesh 22s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mm-mesh {
+    animation: none;
+  }
+}
+
+/* Gold glow pulse */
+@keyframes mm-glow {
+  0%,
+  100% {
+    opacity: 0.35;
+    filter: blur(60px);
+  }
+  50% {
+    opacity: 0.55;
+    filter: blur(72px);
+  }
+}
+
+.mm-glow-orb {
+  animation: mm-glow 8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mm-glow-orb {
+    animation: none;
+  }
+}
+
+/* Case study — Edelman-style campaign slider */
+.case-study-gallery-swiper .swiper-button-next,
+.case-study-gallery-swiper .swiper-button-prev {
+  display: none;
+}
+
+.case-study-gallery-swiper .swiper-slide {
+  height: auto;
+}
+
+/* Scrollbar */
+* {
+  scrollbar-color: color-mix(in oklab, var(--mm-gold) 40%, transparent) transparent;
+  scrollbar-width: thin;
+}
