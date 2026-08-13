@@ -19,7 +19,7 @@ const SOCIAL = [
   { key: "linkedin" as const, label: "LinkedIn", Icon: FaLinkedinIn },
   { key: "instagram" as const, label: "Instagram", Icon: FaInstagram },
   { key: "x" as const, label: "X", Icon: FaXTwitter },
-  { key: "youtube" as const, label: "YouTube", Icon: FaYoutube },
+  // { key: "youtube" as const, label: "YouTube", Icon: FaYoutube },
 ];
 
 /** Graphite footer — offices, company, links, services, SEO paragraph. */
