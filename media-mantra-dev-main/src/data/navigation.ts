@@ -123,10 +123,10 @@ export const footerColumns = [
 export type SocialKey = "linkedin" | "instagram" | "x" | "youtube";
 
 export const socialLinks: Record<SocialKey, string> = {
-  linkedin: "https://www.linkedin.com/company/mediamantaraglobal/",
-  instagram: "https://www.instagram.com/",
-  x: "https://x.com/",
-  youtube: "https://www.youtube.com/",
+  linkedin: "https://www.linkedin.com/company/media-mantra/",
+  instagram: "https://www.instagram.com/mediamantra_global/?hl=en",
+  x: "https://x.com/mediamantrapr/",
+  // youtube: "https://www.youtube.com/",
 };
 
 export { footerOffices } from "@/data/markets";

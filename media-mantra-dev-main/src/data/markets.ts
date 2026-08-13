@@ -37,7 +37,7 @@ export const markets: readonly Market[] = [
     geo: { lat: 28.6, lon: 77.2 },
     office: {
       region: "India",
-      location: "11th floor, 1106-1107, SAS Tower, Medicity, Gurugram, Haryana- 122001",
+      location: "Ground floor, Plot no. 63, Sector 32, Gurugram, Haryana 122001",
       phone: "+91-9990795002",
       email: "info@mediamantraglobal.com",
     },

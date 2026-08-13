@@ -6,7 +6,7 @@ export const footerOfficeContacts = [
   {
     region: "India",
     phone: "+91-9990795002",
-    address: "11th floor, 1106-1107, SAS Tower, Medicity, Gurugram, Haryana- 122001",
+    address: "Ground floor, Plot no. 63, Sector 32, Gurugram, Haryana 122001",
     email: "info@mediamantraglobal.com",
   },
   {

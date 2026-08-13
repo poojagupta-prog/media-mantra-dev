@@ -13,15 +13,15 @@ export const contactPageContent = {
   headline: "Contact Us",
   intro: "Let's chat. Get in touch by phone, email or just pop in.",
   emailLabel: "Email",
-  email: "hello@mediamantraglobal.com",
+  email: "info@mediamantraglobal.com",
   officesTitle: "Offices",
   offices: [
     {
       region: "India",
       city: "Gurgaon (Headquarters)",
       addressLines: [
-        "11th floor, 1106-1107, SAS Tower, Medicity",
-        "Gurugram, Haryana- 122001",
+        "Ground floor, Plot no. 63, Sector 32",
+        "Gurugram, Haryana - 122001",
       ],
       phone: "+91-9990795002",
       email: "info@mediamantraglobal.com",

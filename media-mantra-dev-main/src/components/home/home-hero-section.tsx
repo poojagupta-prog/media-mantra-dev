@@ -148,7 +148,7 @@ export function HomeHeroSection() {
         ) : (
           <div className="absolute inset-0 bg-gradient-to-br from-mm-graphite via-mm-graphite-deep to-mm-graphite" />
         )}
-        <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-mm-graphite/55 via-mm-graphite/20 to-mm-graphite/40 max-md:from-mm-graphite/45 max-md:via-mm-graphite/15" />
+        {/* <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-mm-graphite/55 via-mm-graphite/20 to-mm-graphite/40 max-md:from-mm-graphite/45 max-md:via-mm-graphite/15" /> */}
 
         <div className="pointer-events-none absolute inset-0 z-10">
           <div className="pointer-events-auto relative h-full w-full">
